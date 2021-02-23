@@ -24,6 +24,27 @@
         'libuiohook/src',
       ],
       "conditions": [
+        ['OS=="darwin"', {
+            "defines": [
+                "__MACOSX_CORE__"
+            ],
+            "link_settings": {
+                "libraries": [
+                    "-framework IOKit",
+                    "-framework Carbon",
+                    "-framework CoreFoundation"
+                ],
+            },
+            'sources': [
+                "libuiohook/src/darwin/input_helper.c",
+                "libuiohook/src/darwin/input_hook.c",
+                "libuiohook/src/darwin/post_event.c",
+                "libuiohook/src/darwin/system_properties.c"
+            ],
+            'include_dirs': [
+                'libuiohook/src/darwin'
+            ]
+        }],
         ['OS=="win"', {
       	  'sources': [
             'libuiohook/src/windows/input_helper.c',
